@@ -1,2 +1,44 @@
-User-agent: *
-Disallow:
+# 多源数据加载
+
+ 超图多源数据加载(地形数据、影像数据、S3M三维缓存数据、矢量切片数据、模型数据、BIM数据、天地图、粒子特效等)，三维飞行，量测和标绘
+
+### 多源数据加载
+
+
+columns:[
+  {
+    title:"LayerName1"
+    children:[
+      {
+        title:"字段1"
+         key:"layerName1-ysdm",
+      },
+      {
+        title:"字段2"
+        key:"layerName1-dlmc",
+      }
+    ]
+  },
+  {
+    title:"layerName2"
+    children:[
+      {
+        title:"字段1"
+         key:"layerName2-ysdm",
+      },
+      {
+        title:"字段2"
+        key:"layerName2dlmc",
+      }
+    ]
+  }
+]
+
+data:[
+  {    
+    layerName1-ysdm:"",
+    layerName1-dlmc:"",
+    layerName2-ysdm:"",
+    layerName2-dlmc:"",
+  }
+]
