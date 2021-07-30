@@ -1,6 +1,6 @@
 <template>
   <div class="fly-route">
-    <scene-viewer @ready="ready"></scene-viewer>
+    <supermap-map @ready="ready"></supermap-map>
     <div id="toolbar" class="param-container tool-bar">
       <span type="button" id="play" class="button black" title="开始"></span>
       <span type="button" id="pause" class="button black" title="暂停"></span>

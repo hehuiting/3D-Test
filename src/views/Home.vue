@@ -7,7 +7,7 @@
 -->
 <template>
   <div class="home">
-    <scene-viewer @ready="ready"></scene-viewer>
+    <supermap-map @ready="ready"></supermap-map>
   </div>
 </template>
 
@@ -25,10 +25,11 @@ export default {
     ready(para) {
       this.Cesium = para.Cesium;
       this.viewer = para.viewer;
-      this.initViewer();
+      // this.initViewer();
       // this.addTerrainLayer();
-      this.addImageLayer();
-      this.addKMLData();
+      // this.addImageLayer();
+      // this.addKMLData();
+      this.addS3MLayer();
     },
 
     initViewer() {
@@ -77,6 +78,10 @@ export default {
       const promise = scene.open(
         "http://www.supermapol.com/realspace/services/3D-suofeiya_church/rest/realspace"
       );
+      //  const promise =  scene.addS3MTilesLayerByScp(
+      //   "https://www.supermapol.com/realspace/services/3D-OlympicGreen20200416/rest/realspace/datas/Building@OlympicGreen/config",
+      //   { name: "Building@OlympicGreen" }
+      // );
       Cesium.when(
         promise,
         function () {
@@ -110,6 +115,38 @@ export default {
           clamptoGround: true,
         })
       );
+    },
+
+    changeHeight(tileset, height) {
+      const { Cesium } = this;
+      height = Number(height);
+      if (isNaN(height)) {
+        return;
+      }
+      // 3DTiles中心点坐标
+      const cartographic = Cesium.Cartographic.fromCartesian(
+        tileset.boundingSphere.center
+      );
+      // 原垂直向量
+      const surface = Cesium.Cartesian3.fromRadians(
+        cartographic.longitude,
+        cartographic.latitude,
+        cartographic.height
+      );
+      // 变换后垂直向量
+      const offset = Cesium.Cartesian3.fromRadians(
+        cartographic.longitude,
+        cartographic.latitude,
+        height
+      );
+      // 变换向量
+      const translation = Cesium.Cartesian3.subtract(
+        offset,
+        surface,
+        new Cesium.Cartesian3()
+      );
+      // 平移向量
+      tileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
     },
   },
 };

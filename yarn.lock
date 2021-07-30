@@ -3722,6 +3722,11 @@ esrecurse@^4.1.0, esrecurse@^4.3.0:
   dependencies:
     estraverse "^5.2.0"
 
+esri-loader@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.nlark.com/esri-loader/download/esri-loader-3.2.0.tgz#7aabafe6cee08ab01ce5cdab7b3877433f6b2a76"
+  integrity sha1-equv5s7girAc5c2rezh3Qz9rKnY=
+
 estraverse@^4.1.1:
   version "4.3.0"
   resolved "https://registry.nlark.com/estraverse/download/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
