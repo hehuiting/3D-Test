@@ -1,18 +1,3 @@
-import { loadCss, loadScript } from "esri-loader";
-
-export const loadArcGISAPI = () => {
-  const jsUrl = "https://js.arcgis.com/4.20/init.js";
-  const cssUrl = "https://js.arcgis.com/4.20/esri/themes/light/main.css";
-  return new Promise((resolve, reject) => {
-    try {
-      loadCss(cssUrl);
-      loadScript({ url: jsUrl }).then(resolve);
-    } catch (error) {
-      reject(error);
-    }
-  });
-};
-
 export const getCesiumScript = () => {
   if (!global.Cesium) {
     let cesiumPath = "/static/Cesium";

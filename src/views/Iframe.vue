@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       systemUrl:
-        "http://161.189.153.241:18080/NatureResource/#/FZSC/ResultsReview/RVLandSpacePlanning/RVCityLandSpacePlanning?token=kD3BL6BvJ2B/6xxZ0B804RNFqRxT9gAt0pgFfwqpHAhiYI8zNfxauDQx2cfjmhRgoI1rFibxlYPAz/Hnj0Sq6TQPnxJVTPSbY4yF660AcHDao7NMBzHlj66kpScwCMTNRErxjVLx5IYP105NhCUr433c4TBsruF5FzTWclG55xE=",
+        "http://161.189.153.241:18080/NatureResource/#/YZT?token=1c1e96ba-829d-49cc-9009-82ada01d8cce",
     };
   },
 };

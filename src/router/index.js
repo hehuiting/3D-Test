@@ -1,9 +1,13 @@
+/*
+ * @Author: heht
+ * @Date: 2021-07-04 19:30:03
+ * @LastEditors: heht
+ * @LastEditTime: 2023-03-06 15:01:22
+ * @Description:
+ */
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import FlyRoute from "../views/FlyRoute.vue";
-import iframeComponent from "../views/Iframe";
-import Arcgis3D from "../views/Arcgis3D";
 
 Vue.use(VueRouter);
 
@@ -14,22 +18,24 @@ const routes = [
     component: Home,
   },
   {
+    path: "/BaseTools",
+    name: "BaseTools",
+    component: () => import("@/views/BaseTools"),
+  },
+  {
     path: "/flyRoute",
     name: "FlyRouteut",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: FlyRoute,
+    component: () => import("@/views/FlyRoute"),
   },
   {
     path: "/iframe",
     name: "Iframe",
-    component: iframeComponent,
+    component: () => import("@/views/Iframe"),
   },
   {
     path: "/Arcgis3D",
     name: "Arcgis3D",
-    component: Arcgis3D,
+    component: () => import("@/views/Arcgis3D"),
   },
 ];
 

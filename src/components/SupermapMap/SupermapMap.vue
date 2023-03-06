@@ -12,7 +12,9 @@
 </template>
 
 <script>
-import { getCesiumScript } from "./utils/registerApi";
+import { getCesiumScript } from "@/utils/registerApi";
+import { setManager } from "@/utils/map";
+
 export default {
   name: "SupermapMap",
   data() {
@@ -34,10 +36,9 @@ export default {
       this.Cesium = Cesium;
       const viewer = new Cesium.Viewer("cesiumContainer");
       this.viewer = viewer;
-      this.$emit("ready", {
-        Cesium,
-        viewer,
-      });
+      const manager = Object.assign({ Cesium, viewer });
+      setManager(manager);
+      this.$emit("ready", manager);
     },
   },
 };
@@ -54,5 +55,8 @@ export default {
     top: 0;
     left: 10px;
   }
+}
+/deep/ .sm-compass-outer-ring {
+  display: none;
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: heht
  * @Date: 2021-07-04 19:30:03
  * @LastEditors: heht
- * @LastEditTime: 2021-07-07 10:09:57
+ * @LastEditTime: 2021-08-26 11:07:52
  * @Description: 
 -->
 <template>
@@ -22,9 +22,9 @@ export default {
   },
 
   methods: {
-    ready(para) {
-      this.Cesium = para.Cesium;
-      this.viewer = para.viewer;
+    ready(manager) {
+      this.Cesium = manager.Cesium;
+      this.viewer = manager.viewer;
       // this.initViewer();
       // this.addTerrainLayer();
       // this.addImageLayer();
@@ -75,13 +75,13 @@ export default {
     addS3MLayer() {
       const { Cesium, viewer } = this;
       const scene = viewer.scene;
-      const promise = scene.open(
-        "http://www.supermapol.com/realspace/services/3D-suofeiya_church/rest/realspace"
-      );
-      //  const promise =  scene.addS3MTilesLayerByScp(
-      //   "https://www.supermapol.com/realspace/services/3D-OlympicGreen20200416/rest/realspace/datas/Building@OlympicGreen/config",
-      //   { name: "Building@OlympicGreen" }
+      // const promise = scene.open(
+      //   "http://www.supermapol.com/realspace/services/3D-suofeiya_church/rest/realspace"
       // );
+      const promise = scene.addS3MTilesLayerByScp(
+        "http://www.supermapol.com/realspace/services/3D-suofeiya_church/rest/realspace/datas/Config/config",
+        { name: "Config" }
+      );
       Cesium.when(
         promise,
         function () {

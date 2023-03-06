@@ -5,45 +5,28 @@
 </template>
 
 <script>
-import loadModules from "../components/utils/loadModules";
+import { addLayer } from "@/utils/layerUtils";
+
 export default {
   data() {
     return {
-      map: null,
+      layerInfos: [
+        {
+          guid: "HZ_2016",
+          platform: "arcgis",
+          type: "tiled",
+          url: "https://geo.xdata.group:9019/geoserver/rest/services/XZSJ/HZ_2016/MapServer",
+          layerID: "0",
+          layerAliasName: "影像图层",
+          visible: true,
+        },
+      ],
     };
   },
   methods: {
-    mapReady(para) {
-      this.map = para.map;
-      this.addSceneLayer();
-    },
-
-    async addSceneLayer() {
-      const { SceneLayer } = await loadModules("esri/layers/SceneLayer");
-      const sceneLayer = new SceneLayer({
-        portalItem: {
-          id: "2e0761b9a4274b8db52c4bf34356911e",
-        },
-        popupEnabled: false,
-      });
-      this.map.add(sceneLayer);
-
-      const symbol = {
-        type: "mesh-3d",
-        symbolLayers: [
-          {
-            type: "fill", // autocasts as new FillSymbol3DLayer()
-            // If the value of material is not assigned, the default color will be grey
-            material: {
-              color: [244, 247, 134],
-            },
-          },
-        ],
-      };
-      sceneLayer.renderer = {
-        type: "simple",
-        symbol: symbol,
-      };
+    async mapReady(para) {
+      this.viewManager = para;
+      await addLayer(para.view, this.layerInfos[0], { isLocate: true });
     },
   },
 };
